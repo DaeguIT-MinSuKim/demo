@@ -4,30 +4,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dto.Member;
-import com.example.demo.repository.MemoryMemberRepository;
+import com.example.demo.repository.MemberRepository;
 
+@SpringBootTest
+@Transactional
 class MemberServiceTest {
+    @Autowired
 	MemberService memberService;
-	MemoryMemberRepository memberRepository;
+    @Autowired
+	MemberRepository memberRepository;
 
-	/**
-	 * @BeforeEach : 각 테스트 실행 전에 호출된다. 테스트가 서로 영향이 없도록 항상 새로운 객체를 생성하고, 의존관계도 새로 맺어준다
-	 */
-	@BeforeEach
-	public void beforeEach() {
-		memberRepository = new MemoryMemberRepository();
-		memberService = new MemberService(memberRepository);
-	}
-
-	@AfterEach
-	public void afterEach() {
-		memberRepository.clearStore();
-	}
 
 	@Test
 	public void memberJoin() throws Exception {
