@@ -13,13 +13,13 @@ import com.example.demo.dto.Member;
 import com.example.demo.repository.MemberRepository;
 
 @SpringBootTest
-@Transactional
+@Transactional //transaction 성공 후 rollback처리 됨.
 class MemberServiceTest {
     @Autowired
 	MemberService memberService;
+    
     @Autowired
 	MemberRepository memberRepository;
-
 
 	@Test
 	public void memberJoin() throws Exception {
