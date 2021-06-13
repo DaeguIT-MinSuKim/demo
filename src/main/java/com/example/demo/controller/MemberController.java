@@ -19,6 +19,8 @@ public class MemberController {
 	@Autowired
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
+		//실제 proxy주입되었는지 출력
+		System.out.println("memberService = " + memberService.getClass());
 	}
 
 	@GetMapping(value="/members/new")
